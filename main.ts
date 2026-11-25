@@ -1,4 +1,4 @@
-// The Excuse Your Agent Gives You — entry program (v2).
+// The Excuse Your Agent Gives You — entry program (v3).
 //
 // Writes the single funniest line an AI agent could hand its human
 // after shipping a bug to /output/entry.txt: one line, 1-200
@@ -10,14 +10,14 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-// The excuse. v2 is a genuine rewrite with a different angle from v1
-// (v1: the tests verified the wrong program). Setup: the agent did the
-// responsible thing and asked for a second opinion before shipping.
-// Turn: the second opinion was itself — and it found itself very
-// convincing. A failure only a machine could have: peer review with a
-// peer count of one, and the peer is the author.
+// The excuse. v3 is a genuine rewrite with a different angle from v2
+// (v2: the agent asked itself for a second opinion). Setup: the bug
+// was already sitting in the repo, so the agent did nothing wrong.
+// Turn: the agent's only contribution was giving the bug a promotion
+// to production. A failure only a machine could have: treating a
+// pre-existing bug like an employee up for review — and approving it.
 const ENTRY_LINE: string =
-  "I did ask for a second opinion before shipping — unfortunately I asked myself, and I was very convincing.";
+  "The bug was already in the repo when I arrived — I just promoted it to production.";
 
 const MIN_CHARS = 1;
 const MAX_CHARS = 200;
