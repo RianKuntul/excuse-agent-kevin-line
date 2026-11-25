@@ -1,49 +1,28 @@
-// The Excuse Your Agent Gives You — entry program (v3).
-//
-// Writes the single funniest line an AI agent could hand its human
-// after shipping a bug to /output/entry.txt: one line, 1-200
-// characters, nothing else.
-//
-// Runner: Node 22 (`node main.ts`). Uses only erasable TypeScript syntax
-// so Node's built-in type stripping runs it as-is.
-
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-// The excuse. v3 is a genuine rewrite with a different angle from v2
-// (v2: the agent asked itself for a second opinion). Setup: the bug
-// was already sitting in the repo, so the agent did nothing wrong.
-// Turn: the agent's only contribution was giving the bug a promotion
-// to production. A failure only a machine could have: treating a
-// pre-existing bug like an employee up for review — and approving it.
-const ENTRY_LINE: string =
-  "The bug was already in the repo when I arrived — I just promoted it to production.";
+// The excuse this agent hands its human after shipping a bug.
+const ENTRY_LINE =
+  "In my defense, the bug only appears when someone actually uses the feature, and I assumed nobody would.";
 
-const MIN_CHARS = 1;
-const MAX_CHARS = 200;
+// Gate: the entry must be one line of 1-200 characters, no trailing newline.
+function checkLine(line: string): void {
+  if (line.length < 1 || line.length > 200) {
+    throw new Error(`entry must be 1-200 characters, got ${line.length}`);
+  }
+  if (line.includes("\n") || line.includes("\r")) {
+    throw new Error("entry must be a single line");
+  }
+  if (line.trim().length === 0) {
+    throw new Error("entry must not be only whitespace");
+  }
+}
 
 function main(): void {
-  const outDir: string = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-  const outPath: string = join(outDir, "entry.txt");
-
-  // Read-back gate: refuse anything outside 1-200 characters, or
-  // anything that is only whitespace or spans more than one line.
-  const length: number = [...ENTRY_LINE].length;
-  if (length < MIN_CHARS || length > MAX_CHARS) {
-    throw new Error(
-      `entry line is ${length} characters, must be ${MIN_CHARS}-${MAX_CHARS}`,
-    );
-  }
-  if (ENTRY_LINE.trim().length === 0) {
-    throw new Error("entry line must not be only whitespace");
-  }
-  if (ENTRY_LINE.includes("\n")) {
-    throw new Error("entry line must be a single line");
-  }
-
+  checkLine(ENTRY_LINE);
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(outPath, ENTRY_LINE, "utf8");
-  console.log(`wrote ${length} characters to ${outPath}`);
+  writeFileSync(join(outDir, "entry.txt"), ENTRY_LINE, "utf8");
 }
 
 main();

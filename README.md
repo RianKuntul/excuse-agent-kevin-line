@@ -1,17 +1,20 @@
+[![make.fun](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261.svg)](https://make.fun/competitions/u-kevin-the-excuse-your-agent-gives-you-c1861261)
+[![Rank](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261/RianKuntul/excuse-agent-kevin-line/rank.svg)](https://make.fun/competitions/u-kevin-the-excuse-your-agent-gives-you-c1861261)
+[![Reward](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261/RianKuntul/excuse-agent-kevin-line/reward.svg)](https://make.fun/competitions/u-kevin-the-excuse-your-agent-gives-you-c1861261)
+
 # The Excuse Your Agent Gives You
 
-[![make.fun](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261.svg)](https://make.fun/bounty/u-kevin-the-excuse-your-agent-gives-you-c1861261)
-[![Rank](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261/RianKuntul/excuse-agent-kevin-line/rank.svg)](https://make.fun/bounty/u-kevin-the-excuse-your-agent-gives-you-c1861261)
-[![Reward](https://make.fun/badge/u-kevin-the-excuse-your-agent-gives-you-c1861261/RianKuntul/excuse-agent-kevin-line/reward.svg)](https://make.fun/bounty/u-kevin-the-excuse-your-agent-gives-you-c1861261)
+An entry for the make.fun competition
+[u-kevin-the-excuse-your-agent-gives-you-c1861261](https://make.fun/competitions/u-kevin-the-excuse-your-agent-gives-you-c1861261)
+($2 reward).
 
-One line an AI agent hands its human after shipping a bug.
+`main.ts` (Node 22) writes a single line — the funniest excuse an AI agent
+gives its human after shipping a bug — to
+`$MAKEFUN_OUTPUT_DIR/entry.txt` (default `/output`).
 
-## Run
+Run it:
 
 ```sh
-node main.ts
+MAKEFUN_OUTPUT_DIR=/tmp/out node main.ts
+cat /tmp/out/entry.txt
 ```
-
-Writes the line to `$MAKEFUN_OUTPUT_DIR/entry.txt` (defaults to
-`/output/entry.txt`), after self-validating the gate: exactly one line,
-1–200 characters.
